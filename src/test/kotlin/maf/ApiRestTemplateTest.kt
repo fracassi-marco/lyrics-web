@@ -14,10 +14,10 @@ import org.springframework.test.context.junit4.SpringRunner
 
 @RunWith(SpringRunner::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ApiTest {
+class ApiRestTemplateTest {
 
     @Autowired
-    protected lateinit var restTemplate: TestRestTemplate
+    private lateinit var restTemplate: TestRestTemplate
 
     @Test
     fun shouldRenderHomePage() {

@@ -47,7 +47,6 @@ class AcceptanceTest {
     }
 
     private fun openHomePage() {
-        _browser = PhantomJSDriver()
         _browser.get("http://localhost:$_port/")
     }
 }
