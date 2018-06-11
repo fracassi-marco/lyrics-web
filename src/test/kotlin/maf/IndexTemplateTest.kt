@@ -2,8 +2,7 @@ package maf
 
 import freemarker.template.Configuration
 import freemarker.template.Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS
-import freemarker.template.Version
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import java.io.File
 import java.io.StringWriter
@@ -33,6 +32,6 @@ class IndexTemplateTest {
     }
 
     private fun assertElementExists(id: String, page: String) {
-        Assertions.assertThat(page).contains("id=\"$id\"")
+        assertThat(page).contains("id=\"$id\"")
     }
 }
