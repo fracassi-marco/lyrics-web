@@ -1,16 +1,18 @@
 package maf
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.test.web.client.exchange
+import org.springframework.http.HttpEntity
+import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
 import org.springframework.test.context.junit4.SpringRunner
+import org.springframework.web.util.UriComponentsBuilder
 
 @RunWith(SpringRunner::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -24,6 +26,17 @@ class ApiRestTemplateTest {
         val response = restTemplate.exchange<String>("/", HttpMethod.GET)
 
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(response.body).contains("form")
+    }
+
+    @Test
+    fun shouldSearchLyrics() {
+        val url = UriComponentsBuilder
+                .fromPath("/search")
+                .queryParam("inputAuthor", "")
+                .queryParam("inputTitle", "")
+
+        val response = restTemplate.exchange<String>(url.toUriString(), HttpMethod.GET)
+
+        assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
     }
 }

@@ -12,4 +12,11 @@ class PagesControllerTest {
 
         assertThat(template).isEqualTo("index")
     }
+
+    @Test
+    fun shouldRenderResults() {
+        val template = PagesController().index()
+
+        assertThat(template).isEqualTo("index")
+    }
 }

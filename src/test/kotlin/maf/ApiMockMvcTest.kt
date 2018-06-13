@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import org.springframework.web.util.UriComponentsBuilder
 
 @RunWith(SpringRunner::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -23,8 +24,16 @@ class ApiMockMvcTest {
 
     @Test
     fun shouldRenderHomePage() {
-        mvc.perform(get("/").accept(APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("form")));
+        mvc.perform(get("/")).andExpect(status().isOk());
+    }
+
+    @Test
+    fun shouldSearchLyrics() {
+        val url = UriComponentsBuilder
+                .fromPath("/search")
+                .queryParam("inputAuthor", "")
+                .queryParam("inputTitle", "")
+
+        mvc.perform(get(url.toUriString())).andExpect(status().isOk());
     }
 }
