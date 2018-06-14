@@ -17,6 +17,7 @@ class IndexTemplateTest {
         assertElementExists("input-author", page)
         assertElementExists("input-title", page)
         assertElementExists("btn-search", page)
+        assertThat(page).contains("action=\"/search\"")
     }
 
     private fun contentOf(name: String, model: HashMap<String, Any>): String {

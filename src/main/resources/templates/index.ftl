@@ -1,6 +1,6 @@
 <html>
     <body>
-        <form action="register" method="post">
+        <form action="/search" method="post">
             <input type="text" name="inputAuthor" id="input-author">
             <input type="text" name="inputTitle" id="input-title">
             <input type="submit" value="Submit" id="btn-search">

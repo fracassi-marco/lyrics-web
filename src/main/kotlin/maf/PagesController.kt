@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 
 @Controller
-class PagesController {
+class PagesController(val searchService: SearchService) {
 
     @RequestMapping("/")
     fun index(): String {
@@ -14,11 +14,8 @@ class PagesController {
 
     @RequestMapping("/search")
     fun search(@RequestParam inputAuthor: String, @RequestParam inputTitle: String): String {
-        return "index"
+        searchService.search(inputAuthor, inputTitle)
+        return "lyric"
     }
-
-}
-
-class SearchRequest {
 
 }
