@@ -41,7 +41,7 @@ class AcceptanceTest {
         _browser.findElementById("input-author").sendKeys(author)
         _browser.findElementById("input-title").sendKeys(title)
         _browser.findElementById("btn-search").click()
-        return _browser.pageSource;
+        return _browser.pageSource
     }
 
     private fun openHomePage() {

@@ -1,6 +1,7 @@
 package maf
 
 import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 
@@ -13,8 +14,9 @@ class PagesController(val searchService: SearchService) {
     }
 
     @RequestMapping("/search")
-    fun search(@RequestParam inputAuthor: String, @RequestParam inputTitle: String): String {
-        searchService.search(inputAuthor, inputTitle)
+    fun search(model: Model, @RequestParam inputAuthor: String, @RequestParam inputTitle: String): String {
+        val text = searchService.search(inputAuthor, inputTitle)
+        model.addAttribute("text", text)
         return "lyric"
     }
 
