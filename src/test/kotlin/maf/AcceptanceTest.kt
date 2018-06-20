@@ -34,7 +34,7 @@ class AcceptanceTest {
 
         val page = searchFor("Aqua", "Barbie Girl")
         
-        assumeThat(page).contains("I'm a Barbie girl, in a Barbie world")
+        assumeThat(page).containsIgnoringCase("You can brush my hair")
     }
 
     private fun searchFor(author: String, title: String): String {

@@ -1,5 +1,6 @@
 package maf
 
+import com.nhaarman.mockito_kotlin.whenever
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -31,6 +32,8 @@ class ApiMockMvcTest {
 
     @Test
     fun shouldSearchLyrics() {
+        whenever(searchService.search("", "")).thenReturn("any")
+
         val url = UriComponentsBuilder
                 .fromPath("/search")
                 .queryParam("inputAuthor", "")
