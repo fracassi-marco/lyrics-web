@@ -45,4 +45,18 @@ class ApiRestTemplateTest {
 
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
     }
+
+    @Test
+    fun shouldShowLyricsNotFound() {
+        whenever(searchService.search("", "")).thenThrow(LyricNotFoundException())
+
+        val url = UriComponentsBuilder
+                .fromPath("/search")
+                .queryParam("inputAuthor", "")
+                .queryParam("inputTitle", "")
+
+        val response = restTemplate.exchange<String>(url.toUriString(), HttpMethod.GET)
+
+        assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
+    }
 }

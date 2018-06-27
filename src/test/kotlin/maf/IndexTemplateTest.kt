@@ -1,35 +1,19 @@
 package maf
 
-import freemarker.template.Configuration
-import freemarker.template.Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import java.io.File
-import java.io.StringWriter
 import java.util.*
 
 class IndexTemplateTest {
 
     @Test
     fun testProcessTemplateWithModel() {
-        val page = contentOf("index", HashMap())
+        val page = PageTemplate().contentOf("index", HashMap())
 
         assertElementExists("input-author", page)
         assertElementExists("input-title", page)
         assertElementExists("btn-search", page)
         assertThat(page).contains("action=\"/search\"")
-    }
-
-    private fun contentOf(name: String, model: HashMap<String, Any>): String {
-        val configuration = Configuration(DEFAULT_INCOMPATIBLE_IMPROVEMENTS)
-        configuration.setDirectoryForTemplateLoading(File("src/main/resources/templates"))
-        val template = configuration.getTemplate(name + ".ftl")
-
-        val writer = StringWriter()
-        template.process(model, writer)
-
-        val page = writer.toString()
-        return page
     }
 
     private fun assertElementExists(id: String, page: String) {

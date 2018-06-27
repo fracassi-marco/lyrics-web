@@ -29,4 +29,11 @@ class PagesControllerTest {
         verify(model).addAttribute("text", "Today is gonna be the day")
         assertThat(template).isEqualTo("lyric")
     }
+
+    @Test
+    fun shouldRenderLyricNotFound() {
+        val template = PagesController(searchService).lyricNotFound()
+
+        assertThat(template).isEqualTo("lyricNotFoud")
+    }
 }
