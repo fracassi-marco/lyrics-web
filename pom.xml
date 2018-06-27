@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>maf</groupId>
-    <artifactId>page-web</artifactId>
+    <artifactId>lyrics-web</artifactId>
     <version>1</version>
 
     <properties>
