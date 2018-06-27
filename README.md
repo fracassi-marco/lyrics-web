@@ -23,7 +23,7 @@ cd lyrics-web
 Run the application:
 
 ```
-mvn mvn spring-boot:run
+mvn spring-boot:run
 ```
 
 Open browser:
