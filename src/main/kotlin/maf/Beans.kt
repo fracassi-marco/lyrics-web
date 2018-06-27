@@ -15,6 +15,6 @@ open class Beans {
 
     @Bean
     open fun searchService(httpClient: RestOperations) : SearchService {
-        return LyricsOvhSearchService(httpClient, "https://api.lyrics.ovh")
+        return LyricsOvhSearchService(httpClient)
     }
 }

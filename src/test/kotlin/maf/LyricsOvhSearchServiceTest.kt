@@ -12,10 +12,11 @@ class LyricsOvhSearchServiceTest {
 
     @Test
     fun shouldMakeSearch() {
+        System.setProperty(LYRICSOVH_ENDPOINT_PROPERTY, "http://any.url")
         whenever(httpClient.getForObject("http://any.url/v1/U2/Pride", SearchResponse::class.java))
                 .thenReturn(SearchResponse("text"))
 
-        val result = LyricsOvhSearchService(httpClient, "http://any.url").search("U2", "Pride")
+        val result = LyricsOvhSearchService(httpClient).search("U2", "Pride")
 
         assertThat(result).isEqualTo("text")
     }

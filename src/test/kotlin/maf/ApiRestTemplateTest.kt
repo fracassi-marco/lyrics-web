@@ -1,5 +1,6 @@
 package maf
 
+import com.nhaarman.mockito_kotlin.whenever
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -33,6 +34,8 @@ class ApiRestTemplateTest {
 
     @Test
     fun shouldSearchLyrics() {
+        whenever(searchService.search("", "")).thenReturn("any")
+
         val url = UriComponentsBuilder
                 .fromPath("/search")
                 .queryParam("inputAuthor", "")
