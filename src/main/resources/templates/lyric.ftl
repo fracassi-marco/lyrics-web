@@ -1,1 +1,5 @@
-${text}
+<html>
+    <body>
+        ${text}
+    </body>
+</html>
