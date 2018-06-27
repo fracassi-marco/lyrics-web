@@ -12,6 +12,7 @@
     <properties>
         <kotlin.version>1.2.50</kotlin.version>
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
+        <springboot.version>2.0.3.RELEASE</springboot.version>
     </properties>
 
     <parent>
@@ -83,19 +84,19 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <version>2.0.3.RELEASE</version>
+            <version>${springboot.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.0.3.RELEASE</version>
+            <version>${springboot.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-freemarker</artifactId>
-            <version>2.0.3.RELEASE</version>
+            <version>${springboot.version}</version>
         </dependency>
 
         <dependency>
