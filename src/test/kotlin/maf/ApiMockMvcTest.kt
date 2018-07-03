@@ -53,4 +53,16 @@ class ApiMockMvcTest {
 
         mvc.perform(get(url.toUriString())).andExpect(status().isOk());
     }
+
+    @Test
+    fun shouldShowLyricsNotFound() {
+        whenever(searchService.search("", "")).thenThrow(LyricNotFoundException())
+
+        val url = UriComponentsBuilder
+                .fromPath("/search")
+                .queryParam("inputAuthor", "")
+                .queryParam("inputTitle", "")
+
+        mvc.perform(get(url.toUriString())).andExpect(status().isOk());
+    }
 }
