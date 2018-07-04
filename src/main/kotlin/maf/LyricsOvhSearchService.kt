@@ -14,5 +14,4 @@ class LyricsOvhSearchService(val httpClient: RestOperations) : SearchService {
 }
 
 
-data class SearchResponse(@JsonProperty("lyrics") val lyrics: String) {
-}
+data class SearchResponse(@JsonProperty("lyrics") val lyrics: String)

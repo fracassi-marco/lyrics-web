@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.web.server.LocalServerPort
 import org.springframework.test.context.junit4.SpringRunner
 import com.github.tomakehurst.wiremock.junit.WireMockRule
+import com.google.gson.Gson
 import org.junit.Rule
 
 
@@ -44,7 +45,7 @@ class LocalWireMockAcceptanceTest {
         stubFor(get("/v1/Aqua/Barbie%20Girl")
                 .willReturn(aResponse()
                         .withHeader("Content-Type", "application/json")
-                        .withBody("{\"lyrics\":\"You can brush my hair\"}")));
+                        .withBody(Gson().toJson(SearchResponse("You can brush my hair")))));
 
         _homePage.open()
         _homePage.searchFor("Aqua", "Barbie Girl")

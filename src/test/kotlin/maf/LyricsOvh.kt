@@ -1,5 +1,6 @@
 package maf
 
+import com.google.gson.Gson
 import org.assertj.core.api.Assertions.assertThat
 import org.eclipse.jetty.util.URIUtil
 import org.json.JSONObject
@@ -16,9 +17,7 @@ class LyricsOvh : HttpServlet() {
         assertThat(request.requestURI).matches(_urlPattern)
 
         response.contentType = "application/json"
-        val rootObject= JSONObject()
-        rootObject.put("lyrics", _text)
-        response.writer.write(rootObject.toString())
+        response.writer.write(Gson().toJson(SearchResponse(_text)))
     }
 
     fun calledWith(author: String, title: String): LyricsOvh {
