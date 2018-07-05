@@ -1,28 +1,24 @@
 package maf
 
-import org.springframework.stereotype.Controller
-import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.ExceptionHandler
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestParam
+import javax.servlet.http.HttpServlet
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 
-@Controller
-class PagesController(val searchService: SearchService) {
+class PagesController(val searchService: SearchService, val pageTemplate: PageTemplate) : HttpServlet() {
 
-    @GetMapping("/")
-    fun index(): String {
-        return "index"
-    }
-
-    @GetMapping("/search")
-    fun search(model: Model, @RequestParam inputAuthor: String, @RequestParam inputTitle: String): String {
-        val text = searchService.search(inputAuthor, inputTitle)
-        model.addAttribute("text", text)
-        return "lyric"
-    }
-
-    @ExceptionHandler(LyricNotFoundException::class)
-    fun lyricNotFound(): String {
-        return "lyricNotFoud"
+    public override fun doGet(req: HttpServletRequest, resp: HttpServletResponse) {
+        var template = "index"
+        val model = HashMap<String, Any>()
+        if(req.requestURI.equals("/search")) {
+            try {
+                val text = searchService.search(req.getParameter("inputAuthor"), req.getParameter("inputTitle"))
+                template = "lyric"
+                model.put("text", text)
+            }
+            catch (e: LyricNotFoundException) {
+                template = "lyricNotFoud"
+            }
+        }
+        resp.writer.write(pageTemplate.contentOf(template, model))
     }
 }

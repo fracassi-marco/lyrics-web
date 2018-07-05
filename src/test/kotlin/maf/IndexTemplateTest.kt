@@ -8,7 +8,7 @@ class IndexTemplateTest {
 
     @Test
     fun testProcessTemplateWithModel() {
-        val page = PageTemplate().contentOf("index", HashMap())
+        val page = FreemarkerPageTemplate().contentOf("index", HashMap())
 
         assertElementExists("input-author", page)
         assertElementExists("input-title", page)

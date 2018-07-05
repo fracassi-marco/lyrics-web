@@ -1,11 +1,25 @@
 package maf
 
-import org.springframework.boot.SpringApplication
-import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.web.client.RestTemplate
 
-@SpringBootApplication
-open class Application
+
+open class Application() {
+
+    private var server: ApplicationServer
+
+    init {
+        server = ApplicationServer(8080, PagesController(LyricsOvhSearchService(RestTemplate()), FreemarkerPageTemplate()))
+    }
+
+    fun start() {
+        server.start()
+    }
+
+    fun stop() {
+        server.close();
+    }
+}
 
 fun main(args: Array<String>) {
-    SpringApplication.run(Application::class.java, *args)
+    Application().start()
 }

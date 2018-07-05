@@ -8,7 +8,7 @@ class LyricNotFoudTemplateTest {
 
     @Test
     fun shouldRenderMessage() {
-        val page = PageTemplate().contentOf("lyricNotFoud", HashMap())
+        val page = FreemarkerPageTemplate().contentOf("lyricNotFoud", HashMap())
 
         assertThat(page).contains("Sorry, lyric not found")
     }

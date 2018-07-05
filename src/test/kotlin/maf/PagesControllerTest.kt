@@ -1,39 +1,54 @@
 package maf
 
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.whenever
-import org.assertj.core.api.Assertions.assertThat
+import com.nhaarman.mockito_kotlin.*
+import org.junit.Before
 import org.junit.Test
-import org.springframework.ui.Model
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 
 
 class PagesControllerTest {
 
     private val searchService: SearchService = mock()
-    private val model: Model = mock()
+    private val request: HttpServletRequest = mock()
+    private val response: HttpServletResponse = mock()
+    private val pageTemplate: PageTemplate = mock()
+
+    @Before
+    fun before() {
+        whenever(response.writer).thenReturn(mock())
+    }
 
     @Test
     fun shouldRenderSearchForm() {
-        val template = PagesController(searchService).index()
+        whenever(request.requestURI).thenReturn("/")
 
-        assertThat(template).isEqualTo("index")
+        PagesController(searchService, pageTemplate).doGet(request, response)
+
+        verify(pageTemplate).contentOf(eq("index"), any())
     }
 
     @Test
     fun shouldRenderLyrics() {
-        whenever(searchService.search("Oasis", "Wanderwall")).thenReturn("Today is gonna be the day")
+        whenever(request.requestURI).thenReturn("/search")
+        whenever(request.getParameter("inputAuthor")).thenReturn("Oasis")
+        whenever(request.getParameter("inputTitle")).thenReturn("Wonderwall")
+        whenever(searchService.search("Oasis", "Wonderwall")).thenReturn("Today is gonna be the day")
 
-        val template = PagesController(searchService).search(model, "Oasis", "Wanderwall")
+        PagesController(searchService, pageTemplate).doGet(request, response)
 
-        verify(model).addAttribute("text", "Today is gonna be the day")
-        assertThat(template).isEqualTo("lyric")
+        verify(pageTemplate).contentOf(eq("lyric"), eq(mapOf("text" to "Today is gonna be the day")))
     }
 
     @Test
     fun shouldRenderLyricNotFound() {
-        val template = PagesController(searchService).lyricNotFound()
+        whenever(request.requestURI).thenReturn("/search")
+        whenever(request.getParameter("inputAuthor")).thenReturn("Oasis")
+        whenever(request.getParameter("inputTitle")).thenReturn("Big sky")
+        whenever(searchService.search("Oasis", "Big sky")).thenThrow(LyricNotFoundException())
 
-        assertThat(template).isEqualTo("lyricNotFoud")
+        PagesController(searchService, pageTemplate).doGet(request, response)
+
+        verify(pageTemplate).contentOf(eq("lyricNotFoud"), any())
     }
 }

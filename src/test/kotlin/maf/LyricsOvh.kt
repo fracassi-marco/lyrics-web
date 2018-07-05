@@ -3,7 +3,6 @@ package maf
 import com.google.gson.Gson
 import org.assertj.core.api.Assertions.assertThat
 import org.eclipse.jetty.util.URIUtil
-import org.json.JSONObject
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
