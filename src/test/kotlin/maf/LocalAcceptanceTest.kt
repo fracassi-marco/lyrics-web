@@ -39,7 +39,7 @@ class LocalAcceptanceTest {
 
     @Test
     fun shouldFindALyrics() {
-        _lyricsOvh.calledWith("Aqua", "Barbie Girl").thanReturn("You can brush my hair")
+        _lyricsOvh.calledWith("Aqua", "Barbie Girl").thenReturn("You can brush my hair")
 
         _homePage.open()
         _homePage.searchFor("Aqua", "Barbie Girl")

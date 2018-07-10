@@ -25,7 +25,7 @@ class LyricsOvh : HttpServlet() {
         return this
     }
 
-    fun thanReturn(text: String): LyricsOvh {
+    fun thenReturn(text: String): LyricsOvh {
         _text = text
         return this
     }
