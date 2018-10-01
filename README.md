@@ -1,10 +1,10 @@
 # Lyrics Web
 
-Lyrics Web is a symple project based on Boot Start and Kotlin. 
-It's goal is to explore th testing stragegies related to a Spring Boot web application written in Kotlin.
+Lyrics Web is a simple project based on Spring Boot and Kotlin. 
+It's goal is to explore the testing strategies related to a Spring Boot web application written in Kotlin.
 It provide a set of examples for:
 * acceptance tests with remote endpoint
-* acceptance tests with local edpoint
+* acceptance tests with local endpoint
 * acceptance tests with RestTemplate
 * external rest service integration tests
 * controller unit tests
