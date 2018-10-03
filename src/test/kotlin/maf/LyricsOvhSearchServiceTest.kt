@@ -3,6 +3,8 @@ package maf
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.After
+import org.junit.Before
 import org.junit.Test
 import org.springframework.web.client.RestOperations
 
@@ -10,9 +12,19 @@ class LyricsOvhSearchServiceTest {
 
     private val httpClient: RestOperations = mock()
 
+    @Before
+    fun before() {
+        System.setProperty(LYRICSOVH_ENDPOINT_PROPERTY, "http://any.url")
+    }
+
+    @After
+    fun after() {
+        System.clearProperty(LYRICSOVH_ENDPOINT_PROPERTY)
+    }
+
     @Test
     fun shouldMakeSearch() {
-        System.setProperty(LYRICSOVH_ENDPOINT_PROPERTY, "http://any.url")
+
         whenever(httpClient.getForObject("http://any.url/v1/U2/Pride", SearchResponse::class.java))
                 .thenReturn(SearchResponse("text"))
 
