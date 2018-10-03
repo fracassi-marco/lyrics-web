@@ -1,6 +1,8 @@
-package maf
+package maf.integration
 
 import com.nhaarman.mockito_kotlin.whenever
+import maf.LyricNotFoundException
+import maf.SearchService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith

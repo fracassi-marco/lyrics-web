@@ -1,7 +1,10 @@
-package maf
+package maf.unit
 
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
+import maf.LYRICSOVH_ENDPOINT_PROPERTY
+import maf.LyricsOvhSearchService
+import maf.SearchResponse
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.After
 import org.junit.Before

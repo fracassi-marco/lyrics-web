@@ -1,6 +1,8 @@
-package maf
+package maf.integration
 
 import com.nhaarman.mockito_kotlin.whenever
+import maf.LyricNotFoundException
+import maf.SearchService
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired

@@ -1,5 +1,8 @@
-package maf
+package maf.integration
 
+import maf.Beans
+import maf.LYRICSOVH_ENDPOINT_PROPERTY
+import maf.LyricsOvhSearchService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.After
 import org.junit.Before

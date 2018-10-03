@@ -1,4 +1,4 @@
-package maf
+package maf.integration
 
 import freemarker.template.Configuration
 import java.io.File

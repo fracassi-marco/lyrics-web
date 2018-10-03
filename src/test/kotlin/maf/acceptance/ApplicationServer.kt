@@ -1,4 +1,4 @@
-package maf
+package maf.acceptance
 
 import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.servlet.ServletContextHandler

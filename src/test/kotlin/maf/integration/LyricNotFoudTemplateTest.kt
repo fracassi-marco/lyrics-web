@@ -1,4 +1,4 @@
-package maf
+package maf.integration
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test

@@ -1,4 +1,4 @@
-package maf
+package maf.acceptance
 
 import org.assertj.core.api.Assumptions.assumeThat
 import org.junit.After
