@@ -1,0 +1,57 @@
+---
+openapi: 3.0.0
+info:
+  title: lyrics.ovh Mock
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/fracassi-marco/lyrics-web/1.0.0
+  description: lyrics.ovh mock
+paths:
+  /v1/U2/Pride:
+    get:
+      parameters:
+      - name: author
+        in: path
+        required: true
+        style: SIMPLE
+        explode: false
+        schema:
+          type: string
+      - name: title
+        in: path
+        required: true
+        style: SIMPLE
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: Lyrics found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lyrics'
+  /v1/U2/Not existing:
+    get:
+      responses:
+        404:
+          description: No lyrics found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Lyrics:
+      type: object
+      properties:
+        lyrics:
+          type: string
+          example: in the name of love
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: No lyrics found
+  extensions: {}
