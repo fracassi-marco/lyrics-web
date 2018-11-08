@@ -1,4 +1,4 @@
-package maf.acceptance
+package loves.acceptance
 
 import com.github.tomakehurst.wiremock.client.WireMock.*
 import org.assertj.core.api.Assumptions.assumeThat
@@ -12,8 +12,8 @@ import org.springframework.boot.web.server.LocalServerPort
 import org.springframework.test.context.junit4.SpringRunner
 import com.github.tomakehurst.wiremock.junit.WireMockRule
 import com.google.gson.Gson
-import maf.LYRICSOVH_ENDPOINT_PROPERTY
-import maf.SearchResponse
+import loves.LYRICSOVH_ENDPOINT_PROPERTY
+import loves.SearchResponse
 import org.junit.Rule
 
 

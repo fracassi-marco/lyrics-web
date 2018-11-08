@@ -1,7 +1,7 @@
-package maf.integration
+package loves.integration
 
-import maf.Beans
-import maf.LyricsOvhSearchService
+import loves.Beans
+import loves.LyricsOvhSearchService
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.Test

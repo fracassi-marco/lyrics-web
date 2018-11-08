@@ -1,4 +1,4 @@
-package maf.acceptance
+package loves.acceptance
 
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver

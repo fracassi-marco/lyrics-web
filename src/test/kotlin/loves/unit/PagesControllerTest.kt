@@ -1,10 +1,10 @@
-package maf.unit
+package loves.unit
 
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
-import maf.PagesController
-import maf.SearchService
+import loves.PagesController
+import loves.SearchService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.springframework.ui.Model

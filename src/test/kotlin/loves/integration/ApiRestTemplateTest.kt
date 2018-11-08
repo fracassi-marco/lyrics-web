@@ -1,35 +1,37 @@
-package maf.integration
+package loves.integration
 
 import com.nhaarman.mockito_kotlin.whenever
-import maf.LyricNotFoundException
-import maf.SearchService
+import loves.LyricNotFoundException
+import loves.SearchService
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.boot.test.web.client.TestRestTemplate
+import org.springframework.boot.test.web.client.exchange
+import org.springframework.http.HttpMethod
+import org.springframework.http.HttpStatus
 import org.springframework.test.context.junit4.SpringRunner
-import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.web.util.UriComponentsBuilder
 
 
 @RunWith(SpringRunner::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc
-class ApiMockMvcTest {
+class ApiRestTemplateTest {
 
     @Autowired
-    private lateinit var mvc : MockMvc
+    private lateinit var restTemplate: TestRestTemplate
 
     @MockBean
     private lateinit var searchService : SearchService
 
     @Test
     fun shouldRenderHomePage() {
-        mvc.perform(get("/")).andExpect(status().isOk());
+        val response = restTemplate.exchange<String>("/", HttpMethod.GET)
+
+        assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
     }
 
     @Test
@@ -41,19 +43,9 @@ class ApiMockMvcTest {
                 .queryParam("inputAuthor", "")
                 .queryParam("inputTitle", "")
 
-        mvc.perform(get(url.toUriString())).andExpect(status().isOk());
-    }
+        val response = restTemplate.exchange<String>(url.toUriString(), HttpMethod.GET)
 
-    @Test
-    fun shouldHandleLyricsNotFound() {
-        whenever(searchService.search("", "")).thenThrow(LyricNotFoundException())
-
-        val url = UriComponentsBuilder
-                .fromPath("/search")
-                .queryParam("inputAuthor", "")
-                .queryParam("inputTitle", "")
-
-        mvc.perform(get(url.toUriString())).andExpect(status().isOk());
+        assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
     }
 
     @Test
@@ -65,6 +57,8 @@ class ApiMockMvcTest {
                 .queryParam("inputAuthor", "")
                 .queryParam("inputTitle", "")
 
-        mvc.perform(get(url.toUriString())).andExpect(status().isOk());
+        val response = restTemplate.exchange<String>(url.toUriString(), HttpMethod.GET)
+
+        assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
     }
 }

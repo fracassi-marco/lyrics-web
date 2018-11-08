@@ -1,4 +1,4 @@
-package maf.integration
+package loves.integration
 
 import freemarker.template.Configuration
 import java.io.File

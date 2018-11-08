@@ -1,4 +1,4 @@
-package maf
+package loves
 
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model

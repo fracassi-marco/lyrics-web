@@ -1,7 +1,7 @@
-package maf.acceptance
+package loves.acceptance
 
 import com.google.gson.Gson
-import maf.SearchResponse
+import loves.SearchResponse
 import org.assertj.core.api.Assertions.assertThat
 import org.eclipse.jetty.util.URIUtil
 import javax.servlet.http.HttpServlet

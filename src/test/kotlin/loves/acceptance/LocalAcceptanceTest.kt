@@ -1,6 +1,6 @@
-package maf.acceptance
+package loves.acceptance
 
-import maf.LYRICSOVH_ENDPOINT_PROPERTY
+import loves.LYRICSOVH_ENDPOINT_PROPERTY
 import org.assertj.core.api.Assumptions.assumeThat
 import org.junit.After
 import org.junit.Before

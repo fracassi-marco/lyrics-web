@@ -1,3 +1,3 @@
-package maf
+package loves
 
 class LyricNotFoundException : RuntimeException()
